@@ -1,0 +1,46 @@
+.body{
+    width: calc(100%-5rem);
+    height: 100vh;
+    margin-left: 5rem;
+    z-index: 0;
+    position: relative;
+    top: 0;
+    transition: all 0.5s ease;
+    background: #f4f7fa;
+    padding: 3rem;
+    }
+    
+    .body-trymed{
+        width: calc(100%-16.5625rem);
+        margin-left: 16.5625rem;
+    }
+    
+    .body-md-screen{
+        width: calc(100%-5rem);
+        margin-left: 5rem;
+    
+    
+    }
+
+    #content {
+        height: calc(100% - 100px);
+        max-width: 1200px;
+        /* padding: 20px; */
+        box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1);
+        /* margin: 25px auto 0 auto; */
+        width: calc(100% - 55px);
+        border-radius: 10px;
+        box-sizing: border-box;
+        background-color: #ffffff;
+      }
+
+
+
+
+
+
+
+
+
+
+      

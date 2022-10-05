@@ -1,0 +1,19 @@
+<div class="sidenav" [ngClass] = "colapsar ? 'sidenav-collapsed': ''">
+    <div class="logo-container">
+        <button class="logo" (click)="alterar()">P</button>
+        <div class="logo-text" *ngIf="colapsar" (click)="cerrarSidenav($event)">Parking</div>
+        <button class="btn-close" *ngIf="colapsar">
+            <i class="fa-solid fa-xmark fa-times"></i>
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" [routerLink] = "[data.ruta]"
+                routerLinkActive = "active"
+            >
+                <i class="sidenav-link-icon" [class]="data.icon" ></i>
+                <span class="sidenav-link-text" *ngIf="colapsar">{{data.pagina}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
