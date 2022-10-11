@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginInComponent } from './login-in/login-in.component';
 import { LoginRoutingModule } from './login-routing.module';
+import { SharedModuleModule } from '../../shared-module/shared-module.module';
 
 
 
@@ -12,7 +13,8 @@ import { LoginRoutingModule } from './login-routing.module';
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    SharedModuleModule
   ]
 })
 export class LoginModule { }

@@ -1,1 +1,121 @@
-<p>consultar-tickets works!</p>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+<div class="spinner"></div>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div div class="body-content">   
+    <div class="card">
+        <div class="card-head">
+            <div class="header-container-mobile d-xl-">
+                <div class="row mb-4">
+                  <div class="col-11 title-header"><span>Gestionar tickets</span></div>
+                    <div class="col-1">
+                        <div class="row mb-4 icon-header">
+                            <div class="col-6 ">
+                                <i class="fa-solid fa-magnifying-glass" ></i>
+                            </div>
+                            <div class="col-6">
+                                <i class="fa-solid fa-circle-plus" [routerLink]="['/sidenav']"></i>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="internal-body-containe">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="nombre" class="form-label">Identificacion</label>
+                        <input type="email" id="correo" class="form-control" placeholder="Texto ..." formControlName="Identificacion">
+                       <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="email" id="correo" class="form-control" placeholder="Texto ..." formControlName="Nombre">
+                       <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="nombre" class="form-label">Telefono</label>
+                        <input type="email" id="correo" class="form-control" placeholder="Texto ..." formControlName="Telefono">
+                       <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+                    </div>
+                  </div>
+              </div>
+        </div>
+    </div>  
+    <div class="card">
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="container">
+                    <table class="table align-middle mb-2 bg-white table-container">
+                      <thead>
+                        <tr>
+                          <th scope="col">Codigo</th>
+                          <th scope="col">Placa</th>
+                          <th scope="col">estado</th>
+                          <th scope="col">Cliente</th>
+                          <th scope="col">Puesto</th>
+                          <th scope="col">Hora entreda</th>
+                          <th scope="col">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of tickets | paginate:page_size:page_number">
+                          <td>
+                            <div class="d-flex align-items-center">
+                              {{item.codigoTicked}}
+                            </div>
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              {{item.placa}}
+                            </div>
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              {{item.estado}}
+                            </div>
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              {{item.cliente.identificacion}}
+                            </div>
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              {{item.codigoPuesto}}
+                            </div>
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              {{item.horaDeEntrada | date:'shortDate' }}
+                            </div>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-link btn-sm btn-rounded">
+                              Detalle
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <mat-paginator
+                     [length]="length"
+                     [pageSize]="page_size"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="onPage($event)"
+                     aria-label="Select page">
+                    </mat-paginator>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+

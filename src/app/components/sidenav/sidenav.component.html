@@ -15,5 +15,11 @@
                 <span class="sidenav-link-text" *ngIf="colapsar">{{data.pagina}}</span>
             </a>
         </li>
+        <li class="sidenav-nav-item logout" (click)="logout()">
+            <a class="sidenav-nav-link" routerLinkActive = "active">
+                <i class="sidenav-link-icon fa-solid fa-right-to-bracket"></i>
+                <span class="sidenav-link-text" *ngIf="colapsar">Logout</span>
+            </a>
+        </li>
     </ul>
 </div>

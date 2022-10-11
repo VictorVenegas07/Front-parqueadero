@@ -2,6 +2,7 @@ import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { navbarData } from '../sidenav/nav-data';
+import { LoginService } from '../../service/login.service';
 interface alternarNavelateral{
   ancho: number,
   colapsar: boolean,
@@ -19,9 +20,8 @@ export class SidenavComponent implements OnInit {
   result: any = [];
   
   opened = false;
-  constructor(private router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
     this.ancho = window.innerWidth;
-    this.router.navigate(["/clientes/consultar-cliente"]);
    }
 
   ngOnInit(): void {
@@ -39,5 +39,9 @@ export class SidenavComponent implements OnInit {
 
    toggleSidebar() {
     this.opened = !this.opened;
+  }
+
+  logout(){
+    this.loginService.closSession();
   }
 }

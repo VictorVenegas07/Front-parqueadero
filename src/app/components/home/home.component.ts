@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { navbarHomeData } from '../nav-bar-menu/navbarMunu';
+import { navbarHomeData } from './navbarmenu';
+
 
 @Component({
   selector: 'app-home',
@@ -12,5 +13,9 @@ export class HomeComponent implements OnInit {
   navMenu = navbarHomeData;
   ngOnInit(): void {
   }
+  obtenerClass(item:any): string{
+    return (item === "Inicia sesión")? 'active': '';
+  }
+
 
 }
