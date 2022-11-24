@@ -20,11 +20,15 @@ export class ConsultarVehiculoComponent implements OnInit {
   ngOnInit(): void {
 
     this.getVehiculos()
+    this.getExterno()
   }
 
   onPage(event: PageEvent) {
     this.page_size = event.pageSize;
     this.page_number = event.pageIndex + 1;
+  }
+  getExterno(){
+    this.vehiculoService.getVehiculoE().subscribe(res => console.log(res))
   }
 
   getVehiculos() {

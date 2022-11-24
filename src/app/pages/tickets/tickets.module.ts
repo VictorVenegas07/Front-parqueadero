@@ -7,7 +7,9 @@ import { ConsultarTicketsComponent } from './consultar-tickets/consultar-tickets
 import { EditarTicketsComponent } from './editar-tickets/editar-tickets.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -16,14 +18,12 @@ import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
     AgregarTicketsComponent,
     ConsultarTicketsComponent,
     EditarTicketsComponent,
-    PaginatePipe
 
   ],
   imports: [
     CommonModule,
     TicketsRoutingModule,
-    MatPaginatorModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-spin-fade-rotating' }),
+    SharedModuleModule
   ]
 })
 export class TicketsModule { }

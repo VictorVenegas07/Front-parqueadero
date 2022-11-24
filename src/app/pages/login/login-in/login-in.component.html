@@ -1,15 +1,13 @@
-<div class="container">
-  <div class="forms-container">
-    <div class="signin-signup">
+
       <form  [formGroup]="formGroup" class="sign-in-form">
         <h2 class="title">Sign in</h2>
         <div class="input-field">
           <i class="fas fa-user"></i>
-          <input type="text" formControlName="usuario" placeholder="Username" />
+          <input type="text" formControlName="username" placeholder="Username" />
         </div>
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" formControlName="contrasena" placeholder="Password" />
+          <input type="password" formControlName="password" placeholder="Password" />
         </div>
         <button  class="btn solid" (click)="login()" >Login</button>
         <p class="social-text">Or Sign in with social platforms</p>
@@ -17,6 +15,7 @@
           <a href="#" class="social-icon">
             <i class="fab fa-facebook-f"></i>
           </a>
+          
           <a href="#" class="social-icon">
             <i class="fab fa-twitter"></i>
           </a>
@@ -28,6 +27,4 @@
           </a>
         </div>
       </form>
-    </div>
-  </div>
-</div>
+

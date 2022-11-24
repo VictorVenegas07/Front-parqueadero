@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { DashboardService } from 'src/app/service/dashboard.service';
+import { VehiculoService } from '../../../service/vehiculo.service';
+import { VehiculosMasUsados } from '../../../models/req-dashboard';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-grafico-dona',
@@ -7,28 +11,31 @@ import { ChartData, ChartEvent, ChartType } from 'chart.js';
   styleUrls: ['./grafico-dona.component.css']
 })
 export class GraficoDonaComponent implements OnInit {
+  vehiculosUsados:VehiculosMasUsados[] = []
 
-  constructor() { }
+  constructor(private  vehiculosService:DashboardService) { }
 
   ngOnInit(): void {
+    this.obtenerVehiculo()
   }
-  public doughnutChartLabels: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [ 350, 450, 100 ] },
-      { data: [ 50, 150, 120 ] },
-      { data: [ 250, 130, 70 ] }
-    ]
-  };
-  public doughnutChartType: ChartType = 'doughnut';
-
-  // events
-  public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    // console.log(event, active);
+   obtenerVehiculo(){
+    this.vehiculosService.getVehiculosMasUsados().subscribe(resp=>{ this.vehiculosUsados = resp; })
+  
   }
-
-  public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    // console.log(event, active);
+  doughnutChartData(){
+    return  {
+      labels: this.vehiculosUsados.map((v:VehiculosMasUsados)=> v.tipo),
+      datasets: [ 
+        { 
+        data: this.vehiculosUsados.map((v:VehiculosMasUsados)=> v.cantidad),
+        backgroundColor: [
+          'rgb(255, 0, 0)',
+          'rgb(60, 179, 113)'
+        ]
+      }],
+      
+    }
+   
   }
+  public doughnutChartType: ChartType = 'pie';
 }

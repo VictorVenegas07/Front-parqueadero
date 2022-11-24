@@ -7,7 +7,7 @@ import { AgregarPuestoComponent } from './agregar-puesto/agregar-puesto.componen
 import { EditarPuestoComponent } from './editar-puesto/editar-puesto.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
+import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 
 
 @NgModule({
@@ -15,13 +15,11 @@ import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
     ConsultarPuestoComponent,
     AgregarPuestoComponent,
     EditarPuestoComponent,
-    PaginatePipe
   ],
   imports: [
     CommonModule,
     PuestosRoutingModule,
-    MatPaginatorModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-spin-fade-rotating' }),
+    SharedModuleModule
   ]
 })
 export class PuestosModule { }

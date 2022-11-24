@@ -1,4 +1,4 @@
-.body{
+/* .body{
     width: calc(100%-5rem);
     height: 100vh;
     margin-left: 5rem;
@@ -8,7 +8,7 @@
     transition: all 0.5s ease;
     background: #f4f7fa;
     padding: 3rem;
-    }
+    } */
     
     .body-trymed{
         width: calc(100%-16.5625rem);
@@ -20,6 +20,10 @@
         margin-left: 5rem;
     
     }
+    ::ng-deep .style-tooltip{
+        background: #3b3434;
+        font-size: 15px;
+      }
 
     /* #content { */
         /* height: calc(100% - 100px); */

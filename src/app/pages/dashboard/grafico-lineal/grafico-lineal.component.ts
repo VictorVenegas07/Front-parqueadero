@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { TotalesMesual } from 'src/app/models/req-dashboard';
+import { DashboardService } from '../../../service/dashboard.service';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-grafico-lineal',
@@ -8,38 +11,42 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./grafico-lineal.component.css']
 })
 export class GraficoLinealComponent implements OnInit {
-
-  constructor() { }
+  totalesMensuales:TotalesMesual[] = []
+  data!:any;
+  constructor(private  totalesMesualService:DashboardService) { }
 
   ngOnInit(): void {
+  this.initialData();
   }
-  public lineChartData: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [65, 59, 80, 81, 56, 55, 40],
-        label: 'Series A',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: 'rgba(148,159,177,1)',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-      {
-        data: [28, 48, 40, 19, 86, 27, 90],
-        label: 'Series B',
-        backgroundColor: 'rgba(77,83,96,0.2)',
-        borderColor: 'rgba(77,83,96,1)',
-        pointBackgroundColor: 'rgba(77,83,96,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(77,83,96,1)',
-        fill: 'origin',
-      },
-    ],
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+  private initialData() {
+    this.totalesMesualService.getTotalesMesual().subscribe(res => {
+      console.log(res);
+      this.totalesMensuales = res;
+      console.log(this.totalesMensuales);
+      this.lineChartData();
+    }
+    );
+  }
+
+  lineChartData() {
+     this.data = {
+      datasets: [
+        {
+          data: this.totalesMensuales.map((m: TotalesMesual)=> m.total),
+          label: new Date().getFullYear().toString(),
+          backgroundColor: 'rgba(148,159,177,0.2)',
+          borderColor: 'rgba(148,159,177,1)',
+          pointBackgroundColor: 'rgba(148,159,177,1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+          fill: 'origin',
+        },
+      ],
+      labels: this.totalesMensuales.map((m: TotalesMesual)=> new Date( new Date().getFullYear(), m.mes-1 ).toLocaleString('default', { month: 'long' }))
+    }
   };
+
 
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
@@ -71,23 +78,6 @@ export class GraficoLinealComponent implements OnInit {
   };
 
   public lineChartType: ChartType = 'line';
-
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  private static generateNumber(i: number): number {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  }
-
-
-
-  // events
-  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    // console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    // console.log(event, active);
-  }
 
 
 }

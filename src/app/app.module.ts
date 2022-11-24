@@ -20,7 +20,8 @@ import { HandleErrorsComponent } from './components/modals/handle-errors/handle-
 import {MatButtonModule} from '@angular/material/button';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { SharedModuleModule } from './shared-module/shared-module.module';
-import { PaginatePipe } from './pipes/paginate.pipe';
+import { ToastNoAnimationModule, ToastrModule, ToastContainerModule } from 'ngx-toastr';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -30,18 +31,18 @@ import { PaginatePipe } from './pipes/paginate.pipe';
     SidenavComponent,
     BodyComponent,
     MenuLateralComponent,
-    HomeComponent,
-    LoginInComponent,
+    // HomeComponent,
+    // LoginInComponent,
     HandleErrorsComponent,
-    PaginatePipe
+    NavbarComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), 
     SharedModuleModule
   ],
   providers: [

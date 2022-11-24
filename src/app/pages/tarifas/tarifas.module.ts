@@ -7,7 +7,7 @@ import { ConsultarTarifaComponent } from './consultar-tarifa/consultar-tarifa.co
 import { EditarTarifaComponent } from './editar-tarifa/editar-tarifa.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
+import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 
 
 @NgModule({
@@ -15,13 +15,11 @@ import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
     AgregarTarifaComponent,
     ConsultarTarifaComponent,
     EditarTarifaComponent,
-    PaginatePipe
   ],
   imports: [
     CommonModule,
     TarifasRoutingModule,
-    MatPaginatorModule,
-    NgxSpinnerModule,
+    SharedModuleModule
   ]
 })
 export class TarifasModule { }

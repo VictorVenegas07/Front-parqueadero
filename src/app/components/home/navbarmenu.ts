@@ -1,10 +1,27 @@
 export const navbarHomeData = [
     {
-        ruta: '/home',
-        pagina: 'Inicio'
+        ruta: '/',
+        pagina: 'Inicio',
+        subrutas: []
+    },
+    {
+        ruta: '',
+        pagina: 'Reservar',
+        subrutas: [
+            {
+                namepage:'solicitar',
+                ruta: 'solicitar/reserva'
+            },
+            {
+                namepage: 'consultar',
+                ruta: 'solicitar/consulta/reservas'
+            },
+            
+        ]
     },
     {
         ruta: '/login',
-        pagina: 'Inicia sesión'
-    }
+        pagina: 'Inicia sesión',
+        subrutas: []
+    },
 ] 

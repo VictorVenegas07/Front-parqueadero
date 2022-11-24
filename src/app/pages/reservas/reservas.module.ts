@@ -5,6 +5,7 @@ import { ReservasRoutingModule } from './reservas-routing.module';
 import { EditarReservaComponent } from './editar-reserva/editar-reserva.component';
 import { ConsultarReservaComponent } from './consultar-reserva/consultar-reserva.component';
 import { AgregarReservaComponent } from './agregar-reserva/agregar-reserva.component';
+import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AgregarReservaComponent } from './agregar-reserva/agregar-reserva.compo
 ],
   imports: [
     CommonModule,
-    ReservasRoutingModule
+    ReservasRoutingModule,
+    SharedModuleModule
   ]
 })
 export class ReservasModule { }

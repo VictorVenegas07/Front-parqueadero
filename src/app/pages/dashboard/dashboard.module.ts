@@ -9,6 +9,7 @@ import { GraficoLinealComponent } from './grafico-lineal/grafico-lineal.componen
 import { GraficoDonaComponent } from './grafico-dona/grafico-dona.component';
 
 
+
 @NgModule({
   declarations: [
     EstadisticasComponent,
@@ -19,7 +20,7 @@ import { GraficoDonaComponent } from './grafico-dona/grafico-dona.component';
     CommonModule,
     DashboardRoutingModule,
     SharedModuleModule,
-    NgChartsModule
+    NgChartsModule,
   ]
 })
 export class DashboardModule { }

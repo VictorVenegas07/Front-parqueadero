@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError, tap, finalize } from 'rxjs';
 import { HandleErrorsComponent } from '../components/modals/handle-errors/handle-errors.component';
 import Swal from 'sweetalert2'
 import {  ReqResponseUsuario } from '../models/user-login';
@@ -19,11 +19,24 @@ export class InterceptorService implements HttpInterceptor {
     headers
     });
     return next.handle(reqCole).pipe( 
-      catchError(this.manejarError)
+      catchError(this.manejarError),
     );
   }
 
+ repOK(req:any) {
+  let valor = (req.method == 'POST')?'guardados':'actualizados'
+  if (req.method == 'POST' || req.method == 'PUT') {
+    Swal.fire(
+      'Correto!',
+      `Datos ${valor} con exito`,
+      'success'
+    );
+  }
+}
+  
+
   manejarError(error: HttpErrorResponse){
+    console.log(error)
     let title = Object.keys(error.error.errors);
     let mensaje = ``;
     let contarErros = 0;

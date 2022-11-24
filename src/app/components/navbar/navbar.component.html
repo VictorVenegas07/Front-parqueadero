@@ -1,0 +1,27 @@
+
+<header>
+<nav>
+    <input type="checkbox" id = "check">
+    <label for="check" class="checkbtn">
+        <i class="fa-solid fa-bars"></i>
+    </label>
+    <a>
+        <img src="../../../assets/sidenav/parking-signs-icon.webp" alt="logo" class="logo">
+        <strong class="logo-titulo">Parking</strong>
+    </a>
+    <ul>
+        <li *ngFor = "let item of navMenu">
+            <a  [routerLink]="[item.ruta]"  *ngIf="validarSubmeu(item)" >{{item.pagina}}</a>
+            <div class="dropdown"  *ngIf="!validarSubmeu(item)">
+                <a>{{item.pagina}}</a>
+                <div class="dropdown-content">
+                <a [routerLink]="[item.subrutas[0].ruta]">{{item.subrutas[0].namepage}}</a>
+                <a [routerLink]="[item.subrutas[1].ruta]">{{item.subrutas[1].namepage}}</a>
+                </div>
+              </div>
+          </li>
+    </ul>
+</nav>
+
+    <router-outlet></router-outlet>
+</header>

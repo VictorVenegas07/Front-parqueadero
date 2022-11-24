@@ -10,7 +10,8 @@ const routes: Routes = [
   children:[
     {path: 'agregar-reserva', component: AgregarReservaComponent},
     {path: 'consultar-reserva', component: ConsultarReservaComponent},
-    {path: 'editar-reserva', component: EditarReservaComponent},
+    {path: 'detalle/:id', component: EditarReservaComponent},
+    {path: 'detalle/:generar/:idreserva', component: EditarReservaComponent},
     {path: '**', redirectTo: 'consultar-reserva'}
   ]
 }

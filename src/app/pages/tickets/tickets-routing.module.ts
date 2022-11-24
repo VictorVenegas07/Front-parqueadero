@@ -10,7 +10,8 @@ const routes: Routes = [
     children:[
       {path: 'agregar-tickets', component: AgregarTicketsComponent},
       {path: 'consultar-tickets', component: ConsultarTicketsComponent},
-      {path: 'editar-tickets', component: EditarTicketsComponent},
+      {path: 'detalle-tickets/:id', component: EditarTicketsComponent},
+      {path: 'detalle-tickets/:gestionar/:idSalida', component: EditarTicketsComponent},
       {path: '**', redirectTo: 'consultar-tickets'},
       
     ]

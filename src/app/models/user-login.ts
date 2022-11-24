@@ -27,3 +27,20 @@ interface ReqUsuario {
     cargo:          string;
     identificacion: string;
 }
+
+
+export class  UserLog {
+    usuarioId!:     string;
+    nombreUsuario!: string;
+    cargo!:         string;
+    token!:         string;
+    empleado!:      EmpleadoLog;
+}
+
+ interface EmpleadoLog {
+    empleadoId:     string;
+    identificacion: string;
+    tipoDocumuento: string;
+    nombre:         string;
+    telefono:       string;
+}

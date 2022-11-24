@@ -44,11 +44,12 @@ form {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0rem 5rem;
+  padding: 137px 0 119px 0;
   transition: all 0.2s 0.7s;
   overflow: hidden;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+  background: #333;
 }
 
 form.sign-up-form {
@@ -62,21 +63,21 @@ form.sign-in-form {
 
 .title {
   font-size: 2.2rem;
-  color: #444;
+  color: #acacac;
   margin-bottom: 10px;
 }
 
 .input-field {
   max-width: 380px;
   width: 100%;
-  background-color: #f0f0f0;
+  background-color: #3a2626;
   margin: 10px 0;
   height: 55px;
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
   padding: 0 0.4rem;
-  position: relative;
+  /* position: relative; */
 }
 
 .input-field i {
@@ -94,7 +95,7 @@ form.sign-in-form {
   line-height: 1;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #333;
+  color: #fff;
 }
 
 .input-field input::placeholder {
@@ -168,8 +169,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background: rgb(148,175,233);
-  background: linear-gradient(180deg, rgba(148,175,233,0) 55%, rgba(196,174,238,1) 97%);
+  background: linear-gradient(180deg, rgba(23,31,50,0) 53%, rgba(33,37,78,1) 85%);
   border-radius: 50%;
   z-index: 6;
 }
@@ -375,7 +375,7 @@ form.sign-in-form {
 
 @media (max-width: 570px) {
   form {
-    padding: 0 1.5rem;
+    padding: 31% 1.5rem;
   }
 
   .image {

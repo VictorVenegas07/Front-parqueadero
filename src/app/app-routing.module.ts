@@ -5,6 +5,8 @@ import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.com
 import { AuthGuard } from './guards/auth.guard';
 import { LoginInComponent } from './pages/login/login-in/login-in.component';
 import { TarifasModule } from './pages/tarifas/tarifas.module';
+import { LoginGuard } from './guards/login.guard';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const routes: Routes = [
   {
@@ -47,8 +49,28 @@ const routes: Routes = [
       }
     ]
   },
-  {path: 'login',component: LoginInComponent},
-   {path: 'home',component: HomeComponent},
+  
+   {path: '',
+   component: NavbarComponent,
+  children: [
+    {
+      path: 'inicio',
+      loadChildren: () => import('./components/home/home.module').then(m=> m.HomeModule)
+    },
+    {
+      path: 'solicitar',
+      loadChildren: () => import('./public/public.module').then(m=> m.PublicModule)
+    },
+    {path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m=> m.LoginModule),
+    canActivate: [LoginGuard]},
+    {
+      path: '', 
+      redirectTo: 'inicio', 
+      pathMatch: 'full'
+      }
+  ]
+  },
   
   {
     path: '',

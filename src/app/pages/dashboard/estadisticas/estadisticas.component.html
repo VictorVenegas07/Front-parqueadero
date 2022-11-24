@@ -1,28 +1,153 @@
-<div div class="body-content">
-    <div class="card">
-        <div class="card-head">
-            <div class="header-container-mobile d-xl-">
-                <div class="row mb-4">
-                    <div class="col-10 title-header"><span>Dashboard</span>
+<div div class="body-content" style="height: 70vh;">
+  <div class="card">
+    <div class="card-head">
+      <div class="header-container-mobile d-xl-">
+        <div class="row mb-3">
+          <div class="col-10 title-header"><strong>Dashboard</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="internal-body-containe">
+      <div class="container">
+        <div class="row ">
+          <div class="col-xl-4 col-sm-6 col-12 mx-auto ">
+            <div class="card ">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="icon-pencil primary font-large-2 float-left"></i>
                     </div>
+                    <div class="media-body text-right">
+                      <h1>{{productividad.cantidad}}</h1>
+                      <strong>Cantidad</strong>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+          <div class="col-xl-4 col-sm-6 col-12 mx-auto">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="icon-speech warning font-large-2 float-left"></i>
+                    </div>
+                    <div class="media-body text-right">
+                      <h1>{{productividad.horasServicio}}Hr</h1>
+                      <strong>Horas de servicio</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-sm-6 col-12 mx-auto">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="icon-graph success font-large-2 float-left"></i>
+                    </div>
+                    <div class="media-body text-right">
+                      <h1>{{productividad.totalProducido}}$</h1>
+                      <strong>Total producido</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6">
-                <div class="box-selector box-selector--selected">
-                    <app-grafico-lineal></app-grafico-lineal>
+          <div class="col-xl-4 col-sm-6 col-12 mx-auto ">
+            <div class="card ">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="icon-pencil primary font-large-2 float-left"></i>
+                    </div>
+                    <div class="media-body text-right">
+                      <h1>{{productividad.producidoAnterior}}$</h1>
+                      <strong>Productividad del mes anterior</strong>
+                    </div>
+                  </div>
                 </div>
-
+              </div>
             </div>
-            <div class="col-sm-6">
-                <div class="box-selector">
-                    <app-grafico-dona></app-grafico-dona>
+          </div>
+          <div class="col-xl-4 col-sm-6 col-12 mx-auto">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="icon-speech warning font-large-2 float-left"></i>
+                    </div>
+                    <div class="media-body text-right">
+                      <h1>{{productividad.horasServicioAnterior}} hr</h1>
+                      <strong>Horas de servicio del mes anterior</strong>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+          <div class="col-xl-4 col-sm-6 col-12 mx-auto">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="icon-graph success font-large-2 float-left"></i>
+                    </div>
+                    <div class="media-body text-right">
+                      <h1>{{productividad.crecimiento}}%</h1>
+                      <strong>Crecimiento</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div div class="container">
+        <div class="card">
+          <div class="card-body">
+            <div class="container-fluid">
+              <div class="card-body">
+                <div class="internal-body-containe">
+                  <div class="container-fluid"></div>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-sm-5 mx-auto">
+                        <div class="box-selector box-selector--selected">
+                          <app-grafico-lineal></app-grafico-lineal>
+                        </div>
+
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="box-selector">
+                          <app-grafico-dona></app-grafico-dona>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

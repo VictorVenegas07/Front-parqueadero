@@ -1,0 +1,46 @@
+.icon-back {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    padding: 20px 0 0 0;
+    cursor: pointer;
+}
+
+
+.drop-area {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Border */
+    border: 0.25rem dashed #d1d5db;
+    border-radius: 0.25rem;
+}
+
+
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 4px;
+    grid-auto-rows: 125px 60px;
+    cursor: pointer;
+    text-align: center;
+    margin: 19px;
+    padding: 0 0px 46px 0px;
+    font-size: 18px;
+}
+ 
+
+ .activo{
+  background: red;
+  border-radius: 10px;
+ }
+
+ .example-button {
+    margin-top: 16px;
+  }
+  
+  .example-tooltip-red {
+    background: #b71c1c;
+  }

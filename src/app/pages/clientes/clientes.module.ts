@@ -13,7 +13,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule } from '@angular/forms';
 import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
-import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
 
 
 
@@ -22,16 +21,11 @@ import { PaginatePipe } from 'src/app/pipes/paginate.pipe';
     AgregarClienteComponent,
     ConsultarClienteComponent,
     EditarClienteComponent,
-    PaginatePipe
   ],
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    MatButtonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-spin-fade-rotating' }),
-    // SharedModuleModule,
+    SharedModuleModule,
   ],
 })
 export class ClientesModule { }

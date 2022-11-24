@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-in',
@@ -11,7 +12,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 export class LoginInComponent implements OnInit {
   formGroup!: FormGroup;
 
-  constructor(private router: Router, private LoginService: LoginService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private LoginService: LoginService, private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -32,14 +33,18 @@ export class LoginInComponent implements OnInit {
       }
     })
   }
-
+  
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!',{
+      timeOut: 2000,
+    });
+  }
   private buildForm() {
     // {usuario: ['',Validators.required],contrasena: ['',[Validators.required,Validators.min(4)]],}
     this.formGroup = this.formBuilder.group({
-      usuario: new FormControl('',Validators.required),
-      contrasena: new FormControl('',[Validators.required,Validators.min(4)])
+      username: new FormControl('',Validators.required),
+      password: new FormControl('',[Validators.required,Validators.min(4)])
     });
-    console.log(this.formGroup);
   }
   congif() {
     const sign_in_btn = document.querySelector("#sign-in-btn");

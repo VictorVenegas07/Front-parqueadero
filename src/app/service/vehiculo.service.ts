@@ -11,6 +11,10 @@ export class VehiculoService {
   constructor(private http: HttpClient) { }
 
   getVehiculos(){
-    return this.http.get<Vehiculo[]>(`${environment.api}api/Vehiculo`);
+    return this.http.get<Vehiculo[]>(`${environment.api}api/Vehiculoi`);
+  }
+
+  getVehiculoE(){
+    return this.http.get<Vehiculo[]>(`https://<hostname>/api/vehicles`);
   }
 }
