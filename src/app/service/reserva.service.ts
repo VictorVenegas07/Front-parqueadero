@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Reserva, ReservaResp, SolicitudReserva } from '../models/req-reserva';
+import { Reserva, ReservaResp, SolicitudReserva, SolicitudRep } from '../models/req-reserva';
 import { LogResponseService } from './log-response.service';
 import { map, tap } from 'rxjs';
 import { LoginService } from './login.service';
@@ -17,6 +17,9 @@ export class ReservaService {
 
   getReservas() {
     return this.http.get<ReservaResp[]>(`${environment.api}api/Reserva`).pipe(map => map);
+  }
+  getReservaCliente(codigoReserva:string) {
+    return this.http.get<ReservaResp[]>(`${environment.api}Cliente/${codigoReserva}`);
   }
   getReservaId(codigoReserva:string) {
     return this.http.get<ReservaResp>(`${environment.api}api/Reserva/${codigoReserva}`);
@@ -36,9 +39,10 @@ export class ReservaService {
   }
 
   postReservar(solicitud: SolicitudReserva){
-    return this.http.post<Reserva>(environment.api + 'api/Reserva', solicitud).pipe(
+    return this.http.post<SolicitudRep>(environment.api + 'api/Reserva', solicitud).pipe(
       tap(rep => {
-        this.router.navigate([`/solicitar/detalle/reserva/solicitud/${rep.codigoReserva}`]);
+        debugger
+        this.router.navigate([`/solicitar/detalle/reserva/solicitud/${rep.reservaId}`]);
         this.logResponse.respOK({title: 'Datos enviado', menssage:'Reserva registrada con exito!'})
       }))
   }

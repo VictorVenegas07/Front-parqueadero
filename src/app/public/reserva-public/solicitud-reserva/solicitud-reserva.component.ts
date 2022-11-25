@@ -27,6 +27,7 @@ export class SolicitudReservaComponent implements OnInit {
   id: any;
   formGroup!: FormGroup;
   ticket!: Posticket;
+  puestos!: Puesto[];
   constructor(private puestosService: PuestoService,
     private tarifaService: TarifaService,
     private fb: FormBuilder,
@@ -37,6 +38,7 @@ export class SolicitudReservaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTarifa();
+    this.getPuestos();
     this.ComboAno();
   }
 
@@ -50,6 +52,7 @@ export class SolicitudReservaComponent implements OnInit {
       modelo: new FormControl('', [Validators.required, Validators.min(4)]),
       placa: new FormControl('', [Validators.required, Validators.min(4)]),
       marca: new FormControl('', [Validators.required, Validators.min(4)]),
+      puesto: new FormControl('',[Validators.required, Validators.min(4)])
 
     });
   }
@@ -66,14 +69,13 @@ export class SolicitudReservaComponent implements OnInit {
     });
   }
 
+
   guardarReserva() {
     var reserva = SolicitudReserva.RservaDesdeObject(this.formGroup)
-    console.log(reserva)
     this.reservaService.postReservar(reserva).subscribe()
     
   }
   change(event:any){
-    console.log(event)
     if(event.length >= 10){
       this.clienteService.getClienteId(event).subscribe(m => { this.setValue(m)})}
     
@@ -88,7 +90,7 @@ export class SolicitudReservaComponent implements OnInit {
   get contol(){
     return  this.formGroup.controls
   }
-
+  getPuestos() { this.puestosService.getPuestos().subscribe(req => this.puestos = req) }
   getTarifa() { this.tarifaService.getTarifas().subscribe(req => this.tarifas = req) }
   validarPuesto(item: any): boolean { return (item == 'Disponible') ? true : false; }
 
@@ -102,6 +104,19 @@ export class SolicitudReservaComponent implements OnInit {
       año.push(i.toString());
     }
     this.anio = año.reverse()
+  }
+
+  setPuesto(item: Puesto, index: any) {
+
+    (item.disponibilidad !== 'Ocupado') ? this.formGroup.controls['puesto'].setValue(item.puestoId) : this.formGroup.controls['puesto'].setValue('')
+    const element = document.getElementById(index);
+    element?.setAttribute("style", "border: solid black; border-radius: 10px;");
+    if (typeof this.id != 'undefined' && this.id != index) {
+      const element2 = document.getElementById(this.id);
+      element2?.setAttribute("style", "background-color:#ffffff; ");
+    }
+    this.id = index
+    console.log()
   }
 }
 

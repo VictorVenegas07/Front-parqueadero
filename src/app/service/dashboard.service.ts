@@ -12,14 +12,14 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
 
   getTotalesMesual(){
-    return this.http.get<TotalesMesual[]>(`${environment.api}api/Estadisticas`);
+    return this.http.get<TotalesMesual[]>(`${environment.api}api/Estadistica/TotalGeneradoMensual`);
   }
 
   getProductividad(){
-    return this.http.get<Productividad[]>(`${environment.api}api/Estadisticas/Productividad`);
+    return this.http.get<Productividad>(`${environment.api}api/Estadistica/Productividad`);
   }
 
   getVehiculosMasUsados(){
-    return this.http.get<VehiculosMasUsados[]>(`${environment.api}api/Estadisticas/Vehiculos`);
+    return this.http.get<VehiculosMasUsados[]>(`${environment.api}api/Estadistica/VehiculosMasUsados`);
   }
 }

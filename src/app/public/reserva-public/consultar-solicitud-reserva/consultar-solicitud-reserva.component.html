@@ -1,1 +1,83 @@
-<p>consultar-solicitud-reserva works!</p>
+<div class="content-reserva">
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+        <div class="spinner"></div>
+        <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
+    <div div class="body-content">
+        <div class="card">
+            <div class="card-head">
+                <div class="header-container-mobile d-xl-">
+                  <form [formGroup]="formGroup">
+                    <div class="row justify-content-center m-2">
+                        <div class="col-4">
+                            <label for="nombre" class="form-label">Identificacion</label>
+                            <input type="text" id="correo" class="form-control" formControlName="identificacion"
+                                placeholder="Texto ...">
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="button-consultar" (click)="submited()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+
+            <div *ngIf="!bandera" class="card-body">
+                <div class="internal-body-containe">
+                    <table class="table table-lg table-container table-responsive-sm">
+                        <thead>
+                          <tr>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">estado</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Puesto</th>
+                            <th scope="col">Hora entreda</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of reservas">
+                            <td>
+                              <div class="d-flex align-items-center">
+                                {{item.reservaId}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                {{item.vehiculo.placa}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                {{item.estado}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                {{item.cliente.identificacion}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                {{item.puesto.codigoPuesto}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+                                {{item.fechaHora | date : 'mediumTime' }}
+                              </div>
+                            </td>
+                            <td>
+                              <!-- <button type="button" class="btn btn-link btn-sm btn-rounded" *ngIf ="!validarAcciones(item)" (click)="consultarDetalle(item)" >
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                              </button> -->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

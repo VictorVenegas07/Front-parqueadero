@@ -1,97 +1,111 @@
-
 <div class="content-reserva">
-    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
-        <div class="spinner"></div>
-        <p style="font-size: 20px; color: white">Loading...</p>
-      </ngx-spinner>
-      <div div class="body-content">
-        <div class="card">
-          <div class="card-head">
-            <div class="header-container-mobile d-xl-">
-              <div class="row">
-                <div class="col-1 icon-back">
-                  <i class="fa-solid fa-arrow-left" [routerLink]="['/']"></i>
-                </div>
-                <div class="col-10 title-header"><span>Solicitar reserva</span></div>
-                <div class="col-1">
-                  <div class="row mb-4 icon-header">
-                    <div class="col- ml-1" style="font-size: 30px">
-                      <i class="fa-solid fa-floppy-disk" 
-                        (click)="submited()" 
-                        matTooltip="Guardar" 
-                        matTooltipClass="style-tooltip"
-                        [matTooltipPosition]="'above'"
-                        ></i>
-                    </div>
-                  </div>
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <div class="spinner"></div>
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+  <div div class="body-content">
+    <div class="card">
+      <div class="card-head">
+        <div class="header-container-mobile d-xl-">
+          <div class="row">
+            <div class="col-1 icon-back">
+              <i class="fa-solid fa-arrow-left" [routerLink]="['/']"></i>
+            </div>
+            <div class="col-10 title-header"><span>Solicitar reserva</span></div>
+            <div class="col-1">
+              <div class="row mb-4 icon-header">
+                <div class="col- ml-1" style="font-size: 30px">
+                  <i class="fa-solid fa-floppy-disk" (click)="submited()" matTooltip="Guardar"
+                    matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-body">
-            <div class="internal-body-containe">
-              <form [formGroup]="formGroup">
-                <div class="row mb-4">
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Tipo Identificacion</label>
-                    <select class="form-select form-control" formControlName="tDocumento"
-                      aria-label=".form-select-lg example">
-                      <option disabled selected value>Seleccione</option>
-                      <option *ngFor="let item of tdocumentos" [value]="item">{{item}}</option>
-                    </select>
-      
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Identificacion</label>
-                    <input type="email" id="correo" class="form-control" formControlName="identificacion"
-                      (ngModelChange)="change($event)" placeholder="Texto ...">
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="email" id="correo" class="form-control" formControlName="nombres" placeholder="Texto ...">
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Telefono</label>
-                    <input type="email" id="correo" class="form-control" formControlName="telefono" placeholder="Texto ...">
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                </div>
-      
-                <div class="row mb-3">
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Tipo vehiculo</label>
-                    <select class="form-select form-control" formControlName="tVehiculo" aria-label=".form-select-lg example">
-                      <!-- <option selected>Selecionar</option> -->
-                      <option disabled selected value>Seleccionar</option>
-                      <option *ngFor="let item of tarifas" [value]="item.tipo">{{item.tipo}}</option>
-                    </select>
-      
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Placa</label>
-                    <input type="email" id="correo" class="form-control" formControlName="placa" placeholder="Texto ...">
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Marca</label>
-                    <input type="email" id="correo" class="form-control" formControlName="marca" placeholder="Texto ...">
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="nombre" class="form-label">Modelo</label>
-                    <select class="form-select form-control" formControlName="modelo" aria-label=".form-select-lg example">
-                      <option value disabled selected>Seleccionar</option>
-                      <option *ngFor="let item of anio" [value]="item">{{item}}</option>
-                    </select>
-                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
-</div>
+      </div>
+      <div class="card-body">
+        <div class="internal-body-containe">
+          <form [formGroup]="formGroup">
+            <div class="row mb-4">
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Tipo Identificacion</label>
+                <select class="form-select form-control" formControlName="tDocumento"
+                  aria-label=".form-select-lg example">
+                  <option disabled selected value>Seleccione</option>
+                  <option *ngFor="let item of tdocumentos" [value]="item">{{item}}</option>
+                </select>
+
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Identificacion</label>
+                <input type="email" id="correo" class="form-control" formControlName="identificacion"
+                  (ngModelChange)="change($event)" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="email" id="correo" class="form-control" formControlName="nombres" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Telefono</label>
+                <input type="email" id="correo" class="form-control" formControlName="telefono" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Tipo vehiculo</label>
+                <select class="form-select form-control" formControlName="tVehiculo"
+                  aria-label=".form-select-lg example">
+                  <!-- <option selected>Selecionar</option> -->
+                  <option disabled selected value>Seleccionar</option>
+                  <option *ngFor="let item of tarifas" [value]="item.tipo">{{item.tipo}}</option>
+                </select>
+
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Placa</label>
+                <input type="email" id="correo" class="form-control" formControlName="placa" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Marca</label>
+                <input type="email" id="correo" class="form-control" formControlName="marca" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Modelo</label>
+                <select class="form-select form-control" formControlName="modelo" aria-label=".form-select-lg example">
+                  <option value disabled selected>Seleccionar</option>
+                  <option *ngFor="let item of anio" [value]="item">{{item}}</option>
+                </select>
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-lg-12 text-center m- ph-2">
+                <button type="button" class="btn btn-lg btn-secondary" (click)="onPuestoSelect()">{{puestoName}} <i
+                    class="fa-solid fa-chevron-right"></i></button>
+              </div>
+            </div>
+
+            <div class="drop-area" *ngIf="puestoSelect">
+              <div class="wrapper mb-">
+                <div *ngFor="let item of puestos; let i = index">
+                  <img src="../../../../assets/icons/cardisponible.png" (click)='setPuesto(item,i)' [id]="i"
+                    width="100px" *ngIf="validarPuesto(item.disponibilidad)">
+                  <img src="../../../../assets/icons/carocupado.png" width="100px"
+                    *ngIf="!validarPuesto(item.disponibilidad)">
+                  <p>{{item.codigoPuesto}}</p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

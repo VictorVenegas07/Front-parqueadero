@@ -27,8 +27,7 @@ export class EstadisticasComponent implements OnInit {
 
   obtnerProductividad() {
     this.productividadService.getProductividad().subscribe(resp => {
-      console.log(resp[0])
-      this.productividad = resp[0]
+      this.productividad = resp;
     })
   }
 

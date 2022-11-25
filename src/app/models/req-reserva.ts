@@ -22,10 +22,18 @@ export class ReservaResp {
     fechaHora!: Date;
     estado!:    null;
 }
+export interface SolicitudRep {
+    reservaId:  string;
+    clienteId:  string;
+    vehiculoId: string;
+    puestoId:   string;
+    fechaHora:  Date;
+}
 
 export class SolicitudReserva {
 
     static RservaDesdeObject(obj: any) {
+        debugger
         return new SolicitudReserva(
             Cliente.clienteDesdeObject({
                 'identificacion': obj?.controls['identificacion'].value,
@@ -39,12 +47,14 @@ export class SolicitudReserva {
                 'marca': obj?.controls['marca'].value,
                 'tipo': obj?.controls['tVehiculo'].value
             }),
+            obj?.controls['puesto'].value,
             new Date(),
         )
     }
     constructor(
         public cliente: Cliente,
         public vehiculo: Vehiculo,
+        public puestoId:string,
         public fechaHora: Date,) {
 
     }
