@@ -16,10 +16,8 @@
                     <div class="col-1">
                         <div class="row mb-4 icon-header">
                             <div class="col-6 ">
-                                <i class="fa-solid fa-magnifying-glass" ></i>
-                            </div>
-                            <div class="col-6">
-                                <i class="fa-solid fa-circle-plus" [routerLink]="['/','sidenav','reservas','detalle','generar','2']"></i>
+                                <i class="fa-solid fa-magnifying-glass" (click)=" submited()"  matTooltip="Consultar" matTooltipClass="style-tooltip"
+                                [matTooltipPosition]="'above'"></i>
                             </div>
                         </div>
                     </div>
@@ -28,23 +26,41 @@
         </div>
         <div class="card-body">
             <div class="internal-body-containe">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label for="nombre" class="form-label">Identificacion</label>
-                        <input type="email" id="correo" class="form-control" placeholder="Texto ..." >
-                       <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                    </div>
-                    <div class="col-sm-4">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="email" id="correo" class="form-control" placeholder="Texto ..." >
-                       <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
-                    </div>
-                    <div class="col-sm-4">
-                        <label for="nombre" class="form-label">Telefono</label>
-                        <input type="email" id="correo" class="form-control" placeholder="Texto ..." >
-                       <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              <form [formGroup]="formGroup">
+                <div class="row justify-content-center">
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Identificacion</label>
+                    <input type="email" id="correo" class="form-control" placeholder="Texto ..." formControlName="identificacion">
+                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Placa</label>
+                    <input type="email" id="correo" class="form-control" placeholder="Texto ..." formControlName="placa">
+                    <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+                  </div>
+                </div>
+                <div class="row mt-2 justify-content-center">
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Fecha/hora</label>
+                    <div class="input-group date" data-provide="datepicker">
+                      <div class="form-control d-sm-flex p">
+                        <input type="date" class="border-date" formControlName="fecha">
+                      </div>
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                      </div>
                     </div>
                   </div>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Estado</label>
+                    <select class="form-select form-control" formControlName ="estado">
+                      aria-label=".form-select-lg example">
+                      <option disabled selected value>Seleccione</option>
+                      <option *ngFor="let item of estados" [value]="item">{{item}}</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
               </div>
         </div>
     </div>  
@@ -55,7 +71,6 @@
                   <table class="table table-lg table-container table-responsive-sm">
                       <thead>
                         <tr>
-                          <th scope="col">Codigo</th>
                           <th scope="col">Placa</th>
                           <th scope="col">estado</th>
                           <th scope="col">Cliente</th>
@@ -66,11 +81,7 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of reservas | paginate:page_size:page_number">
-                          <td>
-                            <div class="d-flex align-items-center">
-                              {{item.reservaId}}
-                            </div>
-                          </td>
+                        
                           <td>
                             <div class="d-flex align-items-center">
                               {{item.vehiculo.placa}}
@@ -97,11 +108,13 @@
                             </div>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded" *ngIf ="!validarAcciones(item)" (click)="consultarDetalle(item)" >
-                              <i class="fa-solid fa-right-from-bracket"></i>
+                            <button type="button" class="btn btn-link btn-sm btn-rounded" *ngIf ="!validarAcciones(item)" (click)="consultarDetalle(item)"  >
+                              <i class="fa-solid fa-right-from-bracket" matTooltip="Generar ticket"
+                              matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i>
                             </button>
                             <button type="button" class="btn btn-link btn-sm btn-rounded" *ngIf ="validarAcciones(item)" (click)="consultarDetalle(item)">
-                              <i class="fa-solid fa-circle-info"></i>
+                              <i class="fa-solid fa-circle-info" matTooltip="Ver detalle"
+                              matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i>
                             </button>
                           </td>
                         </tr>

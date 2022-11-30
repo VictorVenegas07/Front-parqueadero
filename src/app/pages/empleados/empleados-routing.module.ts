@@ -11,6 +11,7 @@ const routes: Routes = [
       {path: 'editar_empleado', component: EditarEmpleadoComponent},
       {path: 'agregar_empleado', component: AgregarEmpleadoComponent},
       {path: 'consultar_empleado', component: ConsultarEmpleadoComponent},
+      {path: 'detalle-empleado/:id', component: EditarEmpleadoComponent},
       {path: '**', redirectTo: 'consultar_empleado'}
     ]
   }

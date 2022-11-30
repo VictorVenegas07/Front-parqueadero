@@ -16,10 +16,12 @@
                     <div class="col-1">
                         <div class="row mb-4 icon-header">
                             <div class="col-6 ">
-                                <i class="fa-solid fa-magnifying-glass" ></i>
+                                <i class="fa-solid fa-magnifying-glass" matTooltip="Consultar"
+                                matTooltipClass="style-tooltip" [matTooltipPosition]="'above'" ></i>
                             </div>
                             <div class="col-6">
-                                <i class="fa-solid fa-circle-plus" [routerLink]="['/sidenav']"></i>
+                                <i class="fa-solid fa-circle-plus" [routerLink]="['/sidenav/empleados/agregar_empleado']" matTooltip="Agregar"
+                                matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i>
                             </div>
                         </div>
                     </div>
@@ -68,36 +70,37 @@
                         <tr *ngFor="let item of empleados | paginate:page_size:page_number">
                           <td>
                             <div class="d-flex align-items-center">
-                              {{item.tipoDocumuento}}
+                              {{item.empleado.tipoDocumuento}}
                             </div>
                           </td>
                           <td>
                             <div class="d-flex align-items-center">
-                              {{item.identificacion}}
+                              {{item.empleado.identificacion}}
                             </div>
                           </td>
                           <td>
                             <div class="d-flex align-items-center">
-                              {{item.nombre}}
+                              {{item.empleado.nombre}}
                             </div>
                           </td>
                           <td>
                             <div class="d-flex align-items-center">
-                              {{item.telefono}}
+                              {{item.empleado.telefono}}
                             </div>
                           </td>
                           <td>
                             <div class="d-flex align-items-center">
-                              {{item.correo}}
+                              {{item.empleado.email}}
                             </div>
                           </td>
                           <td>
                             <div class="d-flex align-items-center">
-                              {{item.tipoEmpleado}}
+                              {{item.cargo}}
                             </div>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="detalle(item)" matTooltip="Editar"
+                            matTooltipClass="style-tooltip" [matTooltipPosition]="'above'">
                               Edit
                             </button>
                           </td>

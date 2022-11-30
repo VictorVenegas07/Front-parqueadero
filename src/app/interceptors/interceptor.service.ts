@@ -6,9 +6,11 @@ import { HandleErrorsComponent } from '../components/modals/handle-errors/handle
 import Swal from 'sweetalert2'
 import { ReqResponseUsuario } from '../models/user-login';
 import { LoginService } from '../service/login.service';
+import { ReErrors } from '../models/req-error';
 
 @Injectable({ providedIn: 'root' })
 export class InterceptorService implements HttpInterceptor {
+  erros!:ReErrors;
   constructor(private dialog: MatDialog, private loginService: LoginService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let reqUsuario = this.loginService.subject.value.token
@@ -34,13 +36,19 @@ export class InterceptorService implements HttpInterceptor {
     }
   }
 
+  
 
   manejarError(error: HttpErrorResponse) {
     switch (error.status) {
       case 400:
+        let val  = Object.values(error.error.errors);
+        let mensaje =""
+         val.map((x, index)=> {
+          mensaje = `${index}: ${x}`
+        })
         Swal.fire({
-          title: error.error.Title,
-          text: error.error.Message,
+          title: error.error.title,
+          text: mensaje,
           icon: 'error',
           confirmButtonText: 'Aceptar'
         });

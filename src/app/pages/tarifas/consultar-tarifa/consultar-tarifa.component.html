@@ -11,10 +11,12 @@
             <div class="col-1">
               <div class="row mb-4 icon-header">
                 <div class="col-6 ">
-                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <i class="fa-solid fa-magnifying-glass" matTooltip="Consultar"
+                  matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i>
                 </div>
                 <div class="col-6">
-                  <i class="fa-solid fa-circle-plus" [routerLink]="['/sidenav']"></i>
+                  <i class="fa-solid fa-circle-plus" [routerLink]="['/sidenav']" matTooltip="Agregar"
+                  matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i>
                 </div>
               </div>
             </div>
@@ -71,7 +73,8 @@
                     </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                    <button type="button" class="btn btn-link btn-sm btn-rounded" matTooltip="Editar"
+                    matTooltipClass="style-tooltip" [matTooltipPosition]="'above'">
                       Edit
                     </button>
                   </td>

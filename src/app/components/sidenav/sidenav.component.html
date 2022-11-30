@@ -7,8 +7,8 @@
         </button>
     </div>
     <ul class="sidenav-nav">
-        <li class="sidenav-nav-item" *ngFor="let data of navData">
-            <a class="sidenav-nav-link" [routerLink] = "[data.ruta]"
+        <li class="sidenav-nav-item" *ngFor="let data of navData" >
+            <a class="sidenav-nav-link" *ngIf="validaComponents(data)" [routerLink] = "[data.ruta]"
                 routerLinkActive = "active"
             >
                 <i class="sidenav-link-icon" [class]="data.icon" ></i>

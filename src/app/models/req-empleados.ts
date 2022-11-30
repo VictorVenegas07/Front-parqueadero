@@ -1,4 +1,7 @@
+import { FormControl, FormGroup } from '@angular/forms';
+
 export interface Empleado {
+    empleadoId:string;
     identificacion: string;
     tipoDocumuento: string;
     nombre:         string;
@@ -63,4 +66,46 @@ export interface Empleado {
     contrasena:     string;
     cargo:          string;
     identificacion: string;
+}
+
+
+export class EmpleadoReq {
+    static EmpleadoDesdeObject(obj: any) {
+        return new EmpleadoReq(
+            //  obj?.controls['userCrea'].value,
+             obj?.controls['identificacion'].value,
+             obj?.controls['tDocumento'].value,
+            obj?.controls['nombres'].value,
+            obj?.controls['telefono'].value,
+            obj?.controls['email'].value,
+            UsuarioResp.UserDesdeObject(obj)
+        )
+    }
+constructor(
+    // public usuarioCrea:     string,
+    public identificacion:  string,
+    public tipoDocumuento:  string,
+    public nombre:          string,
+    public telefono:        string,
+    public email:           string,
+    public usuario:         UsuarioResp) {
+    
+}
+}
+
+export class UsuarioResp {
+  static UserDesdeObject(obj: any) {
+    return new UsuarioResp(
+        obj?.controls['nombreuser'].value,
+        obj?.controls['contraseña'].value,
+        obj?.controls['tuser'].value,
+    )
+  }
+  constructor(
+    public nombreUsuario: string,
+    public contraseña:    string,
+    public cargo:         string,
+  ) {
+    
+  }
 }

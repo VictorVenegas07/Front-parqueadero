@@ -5,6 +5,7 @@ import { Posticket, RepTicket, Ticket } from '../models/req-tickets';
 import { map, tap, catchError, throwError } from 'rxjs';
 import { LogResponseService } from './log-response.service';
 import { Router } from '@angular/router';
+import { Filter } from '../models/params';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,11 @@ export class TicketsService {
     return this.http.get<RepTicket>(`${environment.api}api/Ticket/${ticketCodigo}`);
   }
 
+  getFiltroTicket(filter: Filter) {
+    let f: string = "?" + Object.keys(filter).filter(key => !!filter[key]).map(key => `${key}=${filter[key]}`).join("&");
+    return this.http.get<Ticket[]>(`${environment.api}api/Ticket/GetFiltrarTickets${f}`);
+  }
+
   getSalidTicketId(ticketCodigo: string) {
     return this.http.get<RepTicket>(`${environment.api}api/Ticket/Salida/${ticketCodigo}`).pipe(
       
@@ -35,5 +41,9 @@ export class TicketsService {
         this.logResponse.respOK({title: 'Datos enviado', menssage:'Salida de ticket generado con exito!'})
       }
     ));
+  }
+
+  getTicketsEmpleado(idempleado:string) {
+    return this.http.get<Ticket[]>(`${environment.api}api/Ticket/ObtenerTicketEmpleado?idEmpleado=${idempleado}`).pipe(map => map);
   }
 }

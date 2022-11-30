@@ -33,7 +33,6 @@ export interface SolicitudRep {
 export class SolicitudReserva {
 
     static RservaDesdeObject(obj: any) {
-        debugger
         return new SolicitudReserva(
             Cliente.clienteDesdeObject({
                 'identificacion': obj?.controls['identificacion'].value,

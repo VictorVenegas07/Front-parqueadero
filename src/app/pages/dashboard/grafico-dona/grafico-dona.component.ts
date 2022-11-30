@@ -13,10 +13,12 @@ import { map } from 'rxjs';
 export class GraficoDonaComponent implements OnInit {
   vehiculosUsados:VehiculosMasUsados[] = []
 
-  constructor(private  vehiculosService:DashboardService) { }
+  constructor(private  vehiculosService:DashboardService) {
+    this.obtenerVehiculo()
+
+   }
 
   ngOnInit(): void {
-    this.obtenerVehiculo()
   }
    obtenerVehiculo(){
     this.vehiculosService.getVehiculosMasUsados().subscribe(resp=>{ this.vehiculosUsados = resp; })
@@ -28,14 +30,20 @@ export class GraficoDonaComponent implements OnInit {
       datasets: [ 
         { 
         data: this.vehiculosUsados.map((v:VehiculosMasUsados)=> v.cantidad),
-        backgroundColor: [
-          'rgb(255, 0, 0)',
-          'rgb(60, 179, 113)'
-        ]
+        backgroundColor: this.random_rgba()
       }],
       
     }
    
   }
   public doughnutChartType: ChartType = 'pie';
+
+ random_rgba():string[] {
+  let colors:string[]= [];
+  this.vehiculosUsados.forEach(x=>{
+    var o = Math.round, r = Math.random, s = 255;
+    colors.push('rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')');
+  })
+  return colors;
+}
 }

@@ -15,7 +15,8 @@
                                 placeholder="Texto ...">
                         </div>
                         <div class="col-4">
-                            <button type="button" class="button-consultar" (click)="submited()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="button" class="button-consultar" (click)="submited()"><i class="fa-solid fa-magnifying-glass" matTooltip="Consultar"
+                              matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i></button>
                         </div>
                     </div>
                   </form>
@@ -69,9 +70,9 @@
                               </div>
                             </td>
                             <td>
-                              <!-- <button type="button" class="btn btn-link btn-sm btn-rounded" *ngIf ="!validarAcciones(item)" (click)="consultarDetalle(item)" >
+                              <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="cancelarReserva(item)" >
                                 <i class="fa-solid fa-right-from-bracket"></i>
-                              </button> -->
+                              </button>
                             </td>
                           </tr>
                         </tbody>

@@ -28,13 +28,13 @@ export class AgregarTicketsComponent implements OnInit {
   id: any;
   formGroup!: FormGroup;
   ticket!: Posticket;
-  streets: string[] = ['12121212', '1192905535'];
   filteredStreets!: Observable<string[]>;
   constructor(private puestosService: PuestoService,
     private tarifaService: TarifaService,
     private fb: FormBuilder,
     private ticketService: TicketsService, 
-    private router: Router, private toastr: ToastrService, private clienteService:ClienteService, 
+    private router: Router, private toastr: ToastrService,
+     private clienteService:ClienteService, 
     private loginService:LoginService) {
     this.buildForm();
   }
@@ -44,7 +44,6 @@ export class AgregarTicketsComponent implements OnInit {
     this.getTarifa();
     this.ComboAno();
     console.log(this.formGroup)
-    // this.autoCompletar();
   }
 
   private buildForm() {
@@ -59,8 +58,6 @@ export class AgregarTicketsComponent implements OnInit {
       marca: new FormControl('', [Validators.required, Validators.min(4)]),
       puesto: new FormControl('', [Validators.required, Validators.min(2)]),
       empleado: new FormControl('', [Validators.required, Validators.min(2)]),
-
-
     });
   }
   submited() {

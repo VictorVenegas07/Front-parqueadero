@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ReservaResp } from 'src/app/models/req-reserva';
 import { ReservaService } from 'src/app/service/reserva.service';
+import { Reserva } from '../../../models/req-reserva';
+import { ModalActionComponent } from '../modal-action/modal-action.component';
 
 @Component({
   selector: 'app-consultar-solicitud-reserva',
@@ -14,7 +17,11 @@ export class ConsultarSolicitudReservaComponent implements OnInit {
   bandera: boolean = false;
   formGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder,   private reservaService: ReservaService, private spinner: NgxSpinnerService) { }
+  constructor(
+    private fb: FormBuilder,
+    private reservaService: ReservaService,
+    private spinner: NgxSpinnerService,
+    public dialog: MatDialog) { }
   ngOnInit(): void {
     this.buildForm();
   }
@@ -28,18 +35,26 @@ export class ConsultarSolicitudReservaComponent implements OnInit {
     if (this.formGroup.invalid) {
       return
     }
-    debugger
-    this. guardarReserva();
+    this.guardarReserva();
   }
 
   guardarReserva() {
     this.spinner.show();
     this.reservaService.getReservaCliente(this.formGroup.controls['identificacion'].value).subscribe(req => {
-      setTimeout(() => {
+     
         this.reservas = req.reverse()
-      }, 500);
-      this.spinner.hide();
     });
-    
+    setTimeout(() => {
+    this.spinner.hide();
+  }, 500);
+
+  }
+
+  cancelarReserva(item: ReservaResp) {
+    this.dialog.open(ModalActionComponent, {
+      width: '250px',
+      height: '100px',
+      data: item
+    });
   }
 }

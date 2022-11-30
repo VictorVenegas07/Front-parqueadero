@@ -1,4 +1,9 @@
-export const navbarData = [
+export interface NavBarData{
+    ruta:string
+    icon:string
+    pagina:string
+}
+export const NavBarData = [
     {
         ruta: 'dashboard',
         icon: 'fa-sharp fa-solid fa-house-user',

@@ -62,3 +62,7 @@ i {
 .grey-bg {  
   background-color: #F5F7FA;
 }
+
+.card{
+  margin: 2.25rem 0px -0.75rem 0px !important;
+}

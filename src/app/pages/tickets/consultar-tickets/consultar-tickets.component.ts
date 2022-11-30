@@ -6,6 +6,8 @@ import { Ticket } from '../../../models/req-tickets';
 import { Router } from '@angular/router';
 import { Puesto } from 'src/app/models/req-puestos';
 import { PuestoService } from 'src/app/service/puesto.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Filter } from 'src/app/models/params';
 
 
 @Component({
@@ -22,9 +24,18 @@ export class ConsultarTicketsComponent implements OnInit {
   accion: any;
   estados = ['Entrada', 'Salida']
   puestos: Puesto[] = []
-  constructor(private spinner: NgxSpinnerService, private ticketService: TicketsService, private router:Router, private puestosService: PuestoService) { }
+  formGroup!: FormGroup;
+
+  constructor(
+    private spinner: NgxSpinnerService,
+     private fb: FormBuilder, 
+     private ticketService: TicketsService,
+      private router:Router,
+      private puestosService: PuestoService,
+      ) { }
 
   ngOnInit(): void {
+    this.buildForm();
     this. getTicket() ;
     this.getPuestos();
   }
@@ -49,6 +60,30 @@ export class ConsultarTicketsComponent implements OnInit {
     return (ticket.estado == 'Entrada')?true:false;
   }
 
+  private buildForm() {
+    this.formGroup = this.fb.group({
+      identificacion: new FormControl('', [Validators.min(4)]),
+      placa: new FormControl(''),
+      estado: new FormControl(''),
+      fecha: new FormControl(''),
+    });
+  }
+  submited() {
+    let filter = new Filter()
+    .set('fecha', this.formGroup.controls['fecha'].value)
+    .set('identificacion', this.formGroup.controls['identificacion'].value)
+    .set("placa", this.formGroup.controls['placa'].value)
+    .set('estado', this.formGroup.controls['estado'].value)
+    this.ticketService.getFiltroTicket(filter).subscribe(req => {
+      setTimeout(() => {
+        this.tickets = req.reverse()
+        this.length = this.tickets.length;
+        this.spinner.hide();
+      }, 500);
+
+    });
+
+  }
   class():string{
     return 'example-tooltip-red'
   }

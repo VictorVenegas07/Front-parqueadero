@@ -7,6 +7,7 @@ import { LogResponseService } from './log-response.service';
 import { map, tap } from 'rxjs';
 import { LoginService } from './login.service';
 import { RepTicket, Ticket } from '../models/req-tickets';
+import { Filter } from '../models/params';
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,8 @@ export class ReservaService {
   }
 
   posGenerarTicket(reserva:any){
-    // reserva.cliente = this.loginService.subject.value.empleado.identificacion 
-    debugger
     return this.http.post<RepTicket>(`${environment.api}Generar/Ticket`, reserva).pipe(
       tap(rep => {
-        console.log(this.router)
-        // this.router.
         this.router.navigate(['/','sidenav','reservas','detalle',reserva.reservaId]);
         this.logResponse.respOK({title: 'Datos enviado', menssage:'Salida de ticket generado con exito!'})
       }
@@ -41,9 +38,21 @@ export class ReservaService {
   postReservar(solicitud: SolicitudReserva){
     return this.http.post<SolicitudRep>(environment.api + 'api/Reserva', solicitud).pipe(
       tap(rep => {
-        debugger
         this.router.navigate([`/solicitar/detalle/reserva/solicitud/${rep.reservaId}`]);
         this.logResponse.respOK({title: 'Datos enviado', menssage:'Reserva registrada con exito!'})
       }))
+  }
+
+  getCancelarReservar(solicitud: string){
+    return this.http.get<ReservaResp>(`${environment.api}Cancelar/${solicitud}`).pipe(
+      tap(rep => {
+        debugger
+        this.router.navigate([`/solicitar/detalle/reserva/solicitud/${rep.reservaId}`]);
+        this.logResponse.respOK({title: 'Datos enviado', menssage:'Reserva Cancelada con exito!'})
+      }))
+  }
+  getFiltroReserva(filter: Filter) {
+    let f: string = "?" + Object.keys(filter).filter(key => !!filter[key]).map(key => `${key}=${filter[key]}`).join("&");
+    return this.http.get<ReservaResp[]>(`${environment.api}api/Reserva/GetFiltrarReserva${f}`);
   }
 }

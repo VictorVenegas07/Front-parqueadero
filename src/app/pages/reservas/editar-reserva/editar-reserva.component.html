@@ -9,7 +9,8 @@
         <div class="header-container-mobile d-xl-">
           <div class="row">
             <div class="col-1 icon-back">
-              <i class="fa-solid fa-arrow-left" [routerLink]="[back]"></i>
+              <i class="fa-solid fa-arrow-left" [routerLink]="[back]" matTooltip="Volver"
+              matTooltipClass="style-tooltip" [matTooltipPosition]="'above'"></i>
             </div>
             <div class="col-10 title-header"><span>{{title}}</span></div>
             <div class="col-1">
@@ -17,7 +18,7 @@
                 <div class="col- ml-1" style="font-size: 30px">
                   <i class="fa-solid fa-floppy-disk" *ngIf="editValue "
                    (click) ="generarfactura()"
-                   matTooltip="Facturar" 
+                   matTooltip="Generar" 
                    matTooltipClass="style-tooltip"
                    [matTooltipPosition]="'above'"></i>
                 </div>
