@@ -7,7 +7,7 @@ import { ConsultarClienteComponent } from './consultar-cliente/consultar-cliente
 const routes: Routes = [
       {path: 'agregar-cliente', component: AgregarClienteComponent},
       {path: 'consultar-cliente', component: ConsultarClienteComponent},
-      {path: 'editar-cliente', component: EditarClienteComponent},
+      {path: 'editar-cliente/:id', component: EditarClienteComponent},
       {path: '**', redirectTo: 'consultar-cliente'},
 ];
 

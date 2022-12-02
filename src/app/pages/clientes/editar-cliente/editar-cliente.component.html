@@ -1,10 +1,61 @@
-<div div class="body-content">   
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <div class="spinner"></div>
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+  <div div class="body-content">
     <div class="card">
-        <div class="card-head">Editar clientes</div>
-        <div class="card-body">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-           Possimus pariatur consectetur veniam magni ducimus libero necessitatibus voluptate, omnis
-            enim quidem inventore officia atque aliquid nesciunt, voluptatem cupiditate nostrum in odio.
+      <div class="card-head">
+        <div class="header-container-mobile d-xl-">
+          <div class="row">
+            <div class="col-1 icon-back">
+              <i class="fa-solid fa-arrow-left" [routerLink]="['/sidenav/clientes/consultar-cliente']"></i>
+            </div>
+            <div class="col-10 title-header"><span>Detalle cliente</span></div>
+            <div class="col-1">
+              <div class="row mb-4 icon-header">
+                <div class="col- ml-1" style="font-size: 30px">
+                  <i class="fa-solid fa-floppy-disk" 
+                    
+                    matTooltip="Guardar" 
+                    matTooltipClass="style-tooltip"
+                    [matTooltipPosition]="'above'"
+                    ></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>  
-</div>
+      </div>
+      <div class="card-body">
+        <div class="internal-body-containe">
+          <form [formGroup]="formGroup">
+            <div class="row mb-4">
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Tipo Identificacion</label>
+                <select class="form-select form-control" formControlName="tDocumento"
+                  aria-label=".form-select-lg example">
+                  <option disabled selected value>Seleccione</option>
+                  <option *ngFor="let item of tdocumentos" [value]="item">{{item}}</option>
+                </select>
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Identificacion</label>
+                <input type="email" id="correo" class="form-control" formControlName="identificacion" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="email" id="correo" class="form-control" formControlName="nombres" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+              <div class="col-sm-3">
+                <label for="nombre" class="form-label">Telefono</label>
+                <input type="email" id="correo" class="form-control" formControlName="telefono" placeholder="Texto ...">
+                <!-- <span class="text-danger ps-2" *ngIf="(searchForm.controls.correo.touched || submitted) && searchForm.controls.correo.errors?.required">Municipio obligatorio</span> -->
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

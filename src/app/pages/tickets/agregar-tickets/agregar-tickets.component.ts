@@ -29,12 +29,14 @@ export class AgregarTicketsComponent implements OnInit {
   formGroup!: FormGroup;
   ticket!: Posticket;
   filteredStreets!: Observable<string[]>;
-  constructor(private puestosService: PuestoService,
+  constructor(
+    private puestosService: PuestoService,
     private tarifaService: TarifaService,
     private fb: FormBuilder,
     private ticketService: TicketsService, 
-    private router: Router, private toastr: ToastrService,
-     private clienteService:ClienteService, 
+    private router: Router, 
+    private toastr: ToastrService,
+    private clienteService:ClienteService, 
     private loginService:LoginService) {
     this.buildForm();
   }
